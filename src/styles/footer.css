@@ -1,0 +1,87 @@
+/**
+ * footer.css
+ * 푸터 스타일
+ */
+
+/* === 푸터 컨테이너 === */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 36px 0;
+}
+
+/* === 푸터 내부 레이아웃 === */
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* === 팀원 정보 영역 === */
+.footer-team {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-team-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.footer-members {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-member {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-member-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.footer-member-role {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* === 푸터 우측 영역 === */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.footer-copyright {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* === 반응형 - 푸터 === */
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .footer-right {
+    align-items: flex-start;
+  }
+
+  .footer-members {
+    gap: 20px;
+  }
+}

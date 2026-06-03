@@ -1,0 +1,174 @@
+/**
+ * common.css
+ * 공통 스타일 - CSS 변수, 기본 리셋, 네비게이션, 푸터
+ */
+
+/* === Pretendard 폰트 로드 (로컬) === */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../fonts/Pretendard-Regular.woff2') format('woff2'),
+       url('../fonts/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../fonts/Pretendard-Medium.woff2') format('woff2'),
+       url('../fonts/Pretendard-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../fonts/Pretendard-SemiBold.woff2') format('woff2'),
+       url('../fonts/Pretendard-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../fonts/Pretendard-Bold.woff2') format('woff2'),
+       url('../fonts/Pretendard-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../fonts/Pretendard-ExtraBold.woff2') format('woff2'),
+       url('../fonts/Pretendard-ExtraBold.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('../fonts/Pretendard-Black.woff2') format('woff2'),
+       url('../fonts/Pretendard-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === CSS 변수 정의 === */
+:root {
+  --bg:       #F0E9D8;
+  --surface:  #E6DDC8;
+  --surface2: #DDD4BC;
+  --border:   #CCC3A8;
+  --text:     #1A1510;
+  --text2:    #5A5045;
+  --muted:    #8A8070;
+  --green:    #2A6A44;
+  --amber:    #875E00;
+  --red:      #A83020;
+}
+
+/* === 기본 리셋 === */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* === 공통 컨테이너 === */
+.wrap {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+section {
+  padding: 100px 0;
+}
+
+/* === 구분선 === */
+hr.rule {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+/* === 공통 버튼 스타일 === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 26px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  letter-spacing: 0.01em;
+}
+
+.btn-dark {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.btn-dark:hover {
+  background: #332920;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--text2);
+  color: var(--text);
+}
+
+/* === 공통 텍스트 스타일 === */
+h2 {
+  font-size: clamp(34px, 4.5vw, 50px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+}
+
+.lead {
+  font-size: 17px;
+  color: var(--text2);
+  max-width: 580px;
+  line-height: 1.75;
+  margin-bottom: 60px;
+}
+
+/* === 반응형 - 공통 === */
+@media (max-width: 768px) {
+  .wrap {
+    padding: 0 24px;
+  }
+
+  section {
+    padding: 72px 0;
+  }
+}

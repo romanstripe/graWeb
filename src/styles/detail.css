@@ -1,0 +1,379 @@
+/**
+ * detail.css
+ * 상세 페이지 전용 스타일
+ * - 아키텍처 페이지
+ * - 작동 원리 페이지
+ * - 하드웨어 페이지
+ * - 구현 과정 페이지
+ */
+
+/* === 상세 페이지 공통 === */
+.detail-page {
+  padding-top: 56px; /* 헤더 높이 */
+}
+
+.detail-header {
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.detail-header h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  margin-bottom: 16px;
+}
+
+.detail-header-desc {
+  font-size: 17px;
+  color: var(--text2);
+  max-width: 640px;
+  line-height: 1.75;
+}
+
+/* === 아키텍처 페이지 === */
+.arch-section {
+  padding: 80px 0;
+}
+
+.arch-flow {
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding: 48px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 40px;
+}
+
+.arch-node {
+  flex: 1;
+  min-width: 140px;
+}
+
+.arch-node-name {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.arch-node-file {
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Consolas', monospace;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.arch-node-desc {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+.arch-connector {
+  padding: 0 16px;
+  padding-top: 6px;
+  flex-shrink: 0;
+  font-size: 18px;
+  color: var(--border);
+  font-weight: 300;
+}
+
+/* === 아키텍처 카드 그리드 === */
+.arch-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.arch-card {
+  background: var(--surface);
+  padding: 36px 40px;
+}
+
+.arch-card-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.arch-card-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.arch-card-body {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.75;
+}
+
+/* === 작동 원리 - 스텝 컴포넌트 === */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.step {
+  background: var(--surface);
+  display: grid;
+  grid-template-columns: 80px 1fr;
+}
+
+.step-num-col {
+  padding: 44px 0 44px 44px;
+  border-right: 1px solid var(--border);
+}
+
+.step-num {
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--border);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.step-content {
+  padding: 44px 48px;
+}
+
+.step-title {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.step-body {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.8;
+  max-width: 640px;
+}
+
+/* === 수식 박스 === */
+.formula {
+  margin: 18px 0;
+  padding: 20px 24px;
+  background: var(--surface2);
+  border-left: 3px solid var(--text);
+  border-radius: 0 5px 5px 0;
+}
+
+.formula-row {
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.formula-row:last-child {
+  margin-bottom: 0;
+}
+
+.formula-expr {
+  font-family: 'Consolas', monospace;
+  font-size: 14px;
+  color: var(--text);
+  min-width: 260px;
+}
+
+.formula-desc {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* === 상태 테이블 === */
+.state-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+.state-table th {
+  padding: 10px 16px;
+  text-align: left;
+  background: var(--surface2);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.state-table td {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+}
+
+.s-safe     { color: var(--green);  font-weight: 600; }
+.s-detected { color: var(--amber);  font-weight: 600; }
+.s-alert    { color: var(--red);    font-weight: 600; }
+
+/* === 하드웨어 이미지 === */
+.hardware-image {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  display: block;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* === 타임라인 (구현 과정) === */
+.timeline {
+  padding-left: 28px;
+  border-left: 1px solid var(--border);
+}
+
+.tl-item {
+  position: relative;
+  margin-bottom: 56px;
+  padding-left: 28px;
+}
+
+.tl-item:last-child {
+  margin-bottom: 0;
+}
+
+.tl-dot {
+  position: absolute;
+  left: -36px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg);
+}
+
+.tl-fail .tl-dot   { border-color: var(--red); }
+.tl-pivot .tl-dot  { border-color: var(--amber); }
+.tl-done .tl-dot   { border-color: var(--green); background: var(--green); }
+
+.tl-phase {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.tl-fail .tl-phase  { color: var(--red); }
+.tl-pivot .tl-phase { color: var(--amber); }
+.tl-done .tl-phase  { color: var(--green); }
+
+.tl-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 10px;
+}
+
+.tl-body {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.8;
+  max-width: 640px;
+}
+
+/* === 결과 그리드 === */
+.results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+
+.result-card {
+  background: var(--surface);
+  padding: 44px;
+}
+
+.result-head {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+
+.result-head.success { color: var(--green); }
+.result-head.limit   { color: var(--amber); }
+
+.result-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.result-list li {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.65;
+  padding-left: 20px;
+  position: relative;
+}
+
+.result-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 1px;
+  background: var(--muted);
+}
+
+/* === 반응형 - 상세 페이지 === */
+@media (max-width: 768px) {
+  .detail-header {
+    padding: 60px 0 40px;
+  }
+
+  .arch-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .step {
+    grid-template-columns: 1fr;
+  }
+
+  .step-num-col {
+    padding: 32px 32px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-content {
+    padding: 24px 32px 32px;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+}
