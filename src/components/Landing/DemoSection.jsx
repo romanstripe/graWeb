@@ -8,15 +8,6 @@
 import React, { forwardRef } from 'react';
 import { useLanguage } from '../../hooks';
 
-/**
- * 상태 캡션 데이터
- * 각 감지 상태의 색상과 설명 (한글/영어)
- */
-const STATUS_CAPTIONS = [
-  { status: 'safe', label: 'SAFE', desc: { ko: '방 비어있음', en: 'Room empty' } },
-  { status: 'detected', label: 'DETECTED', desc: { ko: '존재 감지', en: 'Presence detected' } },
-  { status: 'alert', label: 'ALERT', desc: { ko: '움직임 감지', en: 'Motion detected' } }
-];
 
 /**
  * DemoSection 컴포넌트
@@ -40,18 +31,6 @@ const DemoSection = forwardRef((props, ref) => {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />
-        </div>
-
-        {/* 상태 캡션 */}
-        <div className="demo-caption">
-          {STATUS_CAPTIONS.map((item, index) => (
-            <div key={index} className="demo-caption-item">
-              <span className={`status-dot ${item.status}`} />
-              <span className="demo-caption-text">
-                {item.label}: {lang === 'ko' ? item.desc.ko : item.desc.en}
-              </span>
-            </div>
-          ))}
         </div>
       </div>
     </section>
