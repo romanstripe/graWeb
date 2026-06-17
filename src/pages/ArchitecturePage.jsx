@@ -2,12 +2,13 @@
  * ArchitecturePage.jsx
  * 시스템 흐름/아키텍처 상세 페이지
  * - 시스템 아키텍처 다이어그램 설명
- * - ESP32 → Flask → 웹 연동 구조
+ * - ESP32 > Flask > 웹 연동 구조
  * - 프론트엔드/백엔드 API 연동 방식
  */
 
 import React from 'react';
 import { useLanguage } from '../hooks';
+import architectureDiagram from '../images/dataflow.png';
 import '../styles/detail.css';
 
 /**
@@ -57,6 +58,17 @@ function ArchitecturePage() {
 
       <section className="arch-section">
         <div className="wrap">
+          <div className="detail-image-wrap">
+            <img
+              src={architectureDiagram}
+              alt={t('하드웨어, 백엔드, 프론트엔드로 이어지는 시스템 아키텍처 다이어그램', 'System architecture diagram from hardware to backend to frontend')}
+              className="detail-image"
+            />
+            <p className="detail-image-caption">
+              {t('하드웨어 > 백엔드 > 프론트엔드로 이어지는 전체 데이터 흐름', 'Full data flow from hardware to backend to frontend')}
+            </p>
+          </div>
+
           <div className="arch-flow">
             {ARCH_NODES.map((node, index) => (
               <React.Fragment key={index}>
@@ -65,7 +77,7 @@ function ArchitecturePage() {
                   <div className="arch-node-file">{node.file}</div>
                   <div className="arch-node-desc">{getText(node.desc)}</div>
                 </div>
-                {index < ARCH_NODES.length - 1 && <div className="arch-connector">→</div>}
+                {index < ARCH_NODES.length - 1 && <div className="arch-connector">{'>'}</div>}
               </React.Fragment>
             ))}
           </div>
@@ -80,14 +92,14 @@ function ArchitecturePage() {
             ))}
           </div>
 
-          <div style={{ marginTop: '40px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '16px' }}>
+          <div className="detail-block">
+            <h3 className="sub-heading">
               {t('데이터 흐름 상세', 'Data Flow Details')}
             </h3>
-            <p style={{ fontSize: '14px', color: 'var(--text2)', lineHeight: '1.8' }}>
+            <p className="detail-text">
               {t(
-                'ESP32 보드 2대를 사용하며, 한쪽에서 전류를 통해 흘려보낸 WiFi 신호를 한쪽에서 수집합니다. 이러한 시리얼 통신으로 전달된 데이터를 백엔드 서버인 detect.py에서 분석합니다. 사용자가 실제로 보는 프론트엔드 웹 페이지는 백엔드 서버의 /events 주소에 SSE 방식으로 연결하였습니다. 일반적인 폴링 방식이 아닌 서버에서 상태변화가 생겼을 때 전송하는 것이 실시간성과 효율성을 높일 수 있다고 판단하여, 프론트엔드에서 요청을 보내면 detect.py가 데이터를 분석해 그 결과값을 기반으로 화면의 상태를 변경하도록 구성하였습니다.',
-                'Using two ESP32 boards, one transmits WiFi signals and the other collects them. The data transmitted via serial communication is analyzed by the backend server detect.py. The frontend web page connects to the backend server\'s /events endpoint via SSE. Rather than using traditional polling, we determined that having the server push updates when state changes occur would improve real-time performance and efficiency.'
+                'ESP32 보드 2대를 사용합니다. 한쪽 보드(Sender)가 WiFi 신호를 송신하고, 다른 한쪽 보드(Receiver)가 이를 수집해 시리얼 통신으로 PC에 전달합니다. 전달된 데이터는 백엔드 서버인 detect.py에서 분석됩니다. 사용자가 보는 프론트엔드 페이지는 백엔드 서버의 /events 주소에 SSE 방식으로 연결되어 있습니다. 일반적인 폴링 방식 대신 서버에서 상태 변화가 발생했을 때만 데이터를 전송하는 방식을 사용하여 실시간성과 효율성을 모두 높였습니다.',
+                'Using two ESP32 boards, one (the Sender) transmits WiFi signals while the other (the Receiver) collects them and forwards the data to the PC via serial communication. The data is then analyzed by the backend server, detect.py. The frontend page the user sees connects to the backend server\'s /events endpoint via SSE. Instead of traditional polling, the server only pushes data when a state change occurs, improving both real-time responsiveness and efficiency.'
               )}
             </p>
           </div>

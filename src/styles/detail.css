@@ -26,9 +26,8 @@
 }
 
 .detail-header-desc {
-  font-size: 17px;
+  font-size: 18px;
   color: var(--text2);
-  max-width: 640px;
   line-height: 1.75;
 }
 
@@ -40,7 +39,6 @@
 .arch-flow {
   display: flex;
   align-items: flex-start;
-  overflow-x: auto;
   padding: 48px;
   background: var(--surface);
   border: 1px solid var(--border);
@@ -50,7 +48,8 @@
 
 .arch-node {
   flex: 1;
-  min-width: 140px;
+  min-width: 0;
+  text-align: center;
 }
 
 .arch-node-name {
@@ -67,8 +66,12 @@
   margin-bottom: 8px;
 }
 
+.arch-node-file--spaced {
+  margin-bottom: 12px;
+}
+
 .arch-node-desc {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text2);
   line-height: 1.5;
 }
@@ -82,6 +85,19 @@
   font-weight: 300;
 }
 
+.arch-connector--detailed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.arch-connector-label {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
 /* === 아키텍처 카드 그리드 === */
 .arch-cards {
   display: grid;
@@ -91,6 +107,10 @@
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
+}
+
+.arch-cards--spaced {
+  margin-bottom: 40px;
 }
 
 .arch-card {
@@ -108,13 +128,14 @@
 }
 
 .arch-card-title {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
+  letter-spacing: -0.01em;
   margin-bottom: 10px;
 }
 
 .arch-card-body {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text2);
   line-height: 1.75;
 }
@@ -138,7 +159,6 @@
 
 .step-num-col {
   padding: 44px 0 44px 44px;
-  border-right: 1px solid var(--border);
 }
 
 .step-num {
@@ -154,17 +174,16 @@
 }
 
 .step-title {
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.01em;
   margin-bottom: 12px;
 }
 
 .step-body {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text2);
   line-height: 1.8;
-  max-width: 640px;
 }
 
 /* === 수식 박스 === */
@@ -196,7 +215,7 @@
 }
 
 .formula-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
 }
 
@@ -205,7 +224,7 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .state-table th {
@@ -229,12 +248,63 @@
 .s-detected { color: var(--amber);  font-weight: 600; }
 .s-alert    { color: var(--red);    font-weight: 600; }
 
-/* === 하드웨어 이미지 === */
-.hardware-image {
+/* === 설명용 이미지 (다이어그램, 사진 등) === */
+.detail-image-wrap {
+  margin: 40px 0;
+}
+
+.detail-image {
   width: 100%;
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 720px;
   display: block;
+  margin: 0 auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.detail-image--sm {
+  max-width: 420px;
+}
+
+.detail-image-caption {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* === 상세 페이지 보조 블록 (소제목 + 본문) === */
+.detail-block {
+  margin-top: 64px;
+}
+
+.section-heading {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+}
+
+.sub-heading {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 18px;
+}
+
+.detail-text {
+  font-size: 16px;
+  color: var(--text2);
+  line-height: 1.8;
+}
+
+.detail-text + .detail-text {
+  margin-top: 20px;
+}
+
+.info-box {
+  padding: 32px;
+  background: var(--surface);
   border-radius: 8px;
   border: 1px solid var(--border);
 }
@@ -283,17 +353,16 @@
 .tl-done .tl-phase  { color: var(--green); }
 
 .tl-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.01em;
   margin-bottom: 10px;
 }
 
 .tl-body {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text2);
   line-height: 1.8;
-  max-width: 640px;
 }
 
 /* === 결과 그리드 === */
@@ -332,7 +401,7 @@
 }
 
 .result-list li {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--text2);
   line-height: 1.65;
   padding-left: 20px;
@@ -359,13 +428,23 @@
     grid-template-columns: 1fr;
   }
 
+  .arch-flow {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 32px 24px;
+    gap: 16px;
+  }
+
+  .arch-connector {
+    align-self: center;
+  }
+
   .step {
     grid-template-columns: 1fr;
   }
 
   .step-num-col {
     padding: 32px 32px 0;
-    border-right: none;
     border-bottom: 1px solid var(--border);
   }
 

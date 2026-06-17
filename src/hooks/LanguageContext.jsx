@@ -26,7 +26,7 @@ export function LanguageProvider({ children }) {
 
   /**
    * 언어 토글 함수
-   * ko <-> en 전환
+   * ko / en 전환
    */
   const toggleLang = useCallback(() => {
     setLang(prev => prev === 'ko' ? 'en' : 'ko');

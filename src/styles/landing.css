@@ -13,19 +13,15 @@
 }
 
 .hero h1 {
-  font-size: clamp(48px, 7.5vw, 88px);
+  font-size: clamp(40px, 6vw, 64px);
   font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
   margin-bottom: 28px;
 }
 
-.hero h1 .accent {
-  color: var(--muted);
-}
-
 .hero-desc {
-  font-size: 18px;
+  font-size: 19px;
   color: var(--text2);
   max-width: 520px;
   line-height: 1.7;
@@ -42,21 +38,43 @@
 
 /* === Hero 팀 정보 === */
 .hero-team {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
 }
 
 .hero-team-label {
-  font-size: 13px;
-  font-weight: 600;
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--muted);
+  margin-bottom: 18px;
 }
 
-.hero-team-names {
+.hero-team-members {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.hero-team-member {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-team-member-name {
   font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.hero-team-member-role {
+  font-size: 14px;
   color: var(--text2);
+  line-height: 1.5;
+  max-width: 240px;
 }
 
 /* === 요약 카드 섹션 === */
@@ -85,16 +103,16 @@
 }
 
 .summary-card-title {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  line-height: 1;
+  line-height: 1.2;
   margin-bottom: 14px;
   color: var(--text);
 }
 
 .summary-card-desc {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--muted);
   line-height: 1.55;
 }
@@ -112,27 +130,12 @@
   margin-bottom: 40px;
 }
 
-.video-wrap {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: 8px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  margin-bottom: 24px;
-}
-
-.video-wrap iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
 /* === 데모 상태 캡션 === */
 .demo-caption {
   display: flex;
   gap: 24px;
   flex-wrap: wrap;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .demo-caption-item {
@@ -160,6 +163,11 @@
   padding: 60px 0 100px;
 }
 
+/* === 전시회 질문 (목적/활용) === */
+.exhibition-section {
+  padding: 60px 0 100px;
+}
+
 .nav-buttons-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -172,7 +180,7 @@
 
 .nav-button {
   background: var(--surface);
-  padding: 48px 32px;
+  padding: 48px 28px;
   text-decoration: none;
   text-align: center;
   transition: background 0.2s;
@@ -204,7 +212,7 @@
 }
 
 .nav-button-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--muted);
   line-height: 1.5;
 }
@@ -236,6 +244,11 @@
   .demo-caption {
     flex-direction: column;
     gap: 12px;
+  }
+
+  .hero-team-members {
+    flex-direction: column;
+    gap: 20px;
   }
 }
 

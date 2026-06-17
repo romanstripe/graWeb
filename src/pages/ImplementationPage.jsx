@@ -5,12 +5,19 @@
 
 import React from 'react';
 import { useLanguage } from '../hooks';
+import timelineImage from '../images/timeline.png';
 import '../styles/detail.css';
 
 /**
  * 타임라인 데이터 (한글/영어)
  */
 const TIMELINE_ITEMS = [
+  {
+    phase: { ko: '개발 과정', en: 'Development Phase' },
+    status: 'pivot',
+    title: { ko: '라즈베리파이 기반 환경 시도', en: 'Raspberry Pi-Based Setup Attempt' },
+    body: { ko: '초기에는 라즈베리파이로 시스템을 구성하려 했으나, CSI 데이터 수집과 통신 과정에서 예상보다 많은 제약이 발생했습니다. 환경 설정과 데이터 처리가 복잡해 프로젝트 기간 내 안정적인 결과를 얻기 어렵다고 판단해 방향을 전환했습니다.', en: 'We initially tried building the system around a Raspberry Pi, but ran into far more constraints than expected during CSI data collection and communication. Environment setup and data processing were too complex to yield stable results within the project timeline, so we changed direction.' }
+  },
   {
     phase: { ko: '1단계', en: 'Phase 1' },
     status: 'done',
@@ -25,7 +32,7 @@ const TIMELINE_ITEMS = [
   },
   {
     phase: { ko: '3단계', en: 'Phase 3' },
-    status: 'pivot',
+    status: 'done',
     title: { ko: 'Windows subprocess stdout 버퍼링 문제 해결', en: 'Windows subprocess stdout Buffering Issue Resolution' },
     body: { ko: 'Windows 환경에서 subprocess stdout 버퍼링 문제가 발생했습니다. PYTHONUNBUFFERED=1 설정과 UTF-8 인코딩 이슈를 해결했습니다.', en: 'Encountered subprocess stdout buffering issues in Windows environment. Resolved with PYTHONUNBUFFERED=1 setting and UTF-8 encoding fixes.' }
   },
@@ -33,7 +40,7 @@ const TIMELINE_ITEMS = [
     phase: { ko: '4단계', en: 'Phase 4' },
     status: 'done',
     title: { ko: '임계값 튜닝 실험', en: 'Threshold Tuning Experiments' },
-    body: { ko: '다양한 환경에서 테스트를 수행하며 REL 임계값을 최적화했습니다. SAFE, DETECTED, ALERT 상태 구분을 위한 최적 값을 도출했습니다.', en: 'Conducted tests in various environments to optimize REL thresholds. Derived optimal values for distinguishing SAFE, DETECTED, and ALERT states.' }
+    body: { ko: 'ESP32 전환 이후 오탐지 문제가 발생해 다양한 환경에서 테스트를 수행하며 REL 임계값을 최적화했습니다. SAFE, DETECTED, ALERT 상태 구분을 위한 최적 값을 도출했습니다.', en: 'After switching to ESP32, false detections occurred, so we tested across various environments to optimize REL thresholds. We derived the optimal values for distinguishing SAFE, DETECTED, and ALERT states.' }
   }
 ];
 
@@ -76,10 +83,21 @@ function ImplementationPage() {
 
       <section className="arch-section">
         <div className="wrap">
-          <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '32px' }}>
+          <h2 className="section-heading">
             {t('개발 타임라인', 'Development Timeline')}
           </h2>
-          
+
+          <div className="detail-image-wrap">
+            <img
+              src={timelineImage}
+              alt={t('CSI 수집 환경 세팅부터 임계값 튜닝까지 4단계 개발 과정 다이어그램', 'Four-phase development process diagram from CSI collection setup to threshold tuning')}
+              className="detail-image"
+            />
+            <p className="detail-image-caption">
+              {t('ESP32 전환 이후의 핵심 4단계 (라즈베리파이 시도 단계는 별도)', 'The four core phases after switching to ESP32 (the Raspberry Pi attempt is shown separately below)')}
+            </p>
+          </div>
+
           <div className="timeline">
             {TIMELINE_ITEMS.map((item, index) => (
               <div key={index} className={`tl-item ${getTimelineClass(item.status)}`}>
@@ -91,20 +109,41 @@ function ImplementationPage() {
             ))}
           </div>
 
-          <div style={{ marginTop: '80px' }}>
-            <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>
+          <div className="detail-block">
+            <h2 className="section-heading">
               {t('어려웠던 점', 'Challenges')}
             </h2>
-            <p style={{ fontSize: '15px', color: 'var(--text2)', lineHeight: '1.8', maxWidth: '720px' }}>
-              {t('초기에 선택한 핵심 하드웨어 플랫폼의 기술적 한계를 발견해 시스템을 전면 재구성하였습니다. 아키텍처를 재검토하고 ESP32 기반으로 전환하며 개발 및 실험 일정을 재조정해야 했지만, 이를 통해 안정적인 데이터 수집 환경을 구축할 수 있었습니다.', 'We discovered technical limitations in the initially selected core hardware platform and had to completely restructure the system. Although we had to review the architecture, transition to ESP32-based setup, and readjust development and testing schedules, this allowed us to build a stable data collection environment.')}
+            <p className="detail-text">
+              {t(
+                '초기에는 라즈베리파이로 시스템을 구성하려 했으나 CSI 데이터 수집 및 통신 과정에서 예상보다 많은 제약이 발생해 ESP32 기반으로 전환했습니다. 전환 이후에는 오탐지 문제가 발생해, 수집한 CSI 데이터를 지속적으로 분석하며 탐지 기준을 조정했습니다. Relative 값과 현재 스코어, 배경 스코어 같은 지표를 반복적으로 비교하며 실제 움직임과 노이즈를 구분하는 기준을 찾기 위해 여러 차례 실험을 진행했습니다.',
+                'We initially tried to build the system around a Raspberry Pi, but switched to an ESP32-based setup after running into far more constraints than expected during CSI data collection and communication. After switching, we ran into false-detection issues, so we continuously analyzed the collected CSI data and adjusted our detection criteria. We repeatedly compared metrics like the relative value, current score, and background score, running many experiments to find a threshold that could distinguish real movement from noise.'
+              )}
             </p>
           </div>
 
-          <div style={{ marginTop: '80px' }}>
-            <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '32px' }}>
+          <div className="detail-block">
+            <h2 className="section-heading">
+              {t('느낀 점', 'Reflections')}
+            </h2>
+            <p className="detail-text">
+              {t(
+                '이번 프로젝트에서는 특정 문제를 해결하는 데 많은 시간을 투자했습니다. 라즈베리파이를 다루는 과정과, ESP32 전환 이후 탐지 정확도를 높이기 위해 임계값을 조정하는 과정에서 많은 시행착오를 겪었습니다. 정확도를 높이는 것은 중요했지만, 그만큼 다른 기능을 추가하거나 다양한 시도를 해볼 시간은 줄어들었습니다. 하나의 문제를 완벽히 해결하는 데만 집중하기보다 일정 수준의 성능을 확보한 뒤 다른 기능 개발을 함께 진행하는 방식이 더 효율적이었을 것이라고 생각합니다. 앞으로는 전체 목표를 고려해 우선순위를 조정하며 더 유연하게 개발을 진행하고자 합니다.',
+                'We spent a lot of time solving specific problems in this project — working with the Raspberry Pi, and later tuning thresholds to improve detection accuracy after switching to ESP32. While improving accuracy was important, it left less time for adding other features or trying different approaches. Looking back, securing a reasonable level of performance and developing other features in parallel would likely have been more efficient than perfecting a single problem. Going forward, we want to weigh the overall goal, adjust priorities, and develop more flexibly.'
+              )}
+            </p>
+            <p className="detail-text">
+              {t(
+                '전시회를 통해 사람들은 결과뿐만 아니라 그 결과가 도출되는 과정과 근거를 중요하게 생각한다는 점을 알게 되었습니다. 특히 탐지 알고리즘이 어떤 기준으로 동작하는지, 그리고 현재의 탐지 결과를 얼마나 신뢰할 수 있는지에 대한 설명이 필요하다는 것을 확인할 수 있었습니다.',
+                'Through the exhibition, we learned that people care not only about the result, but also about the process and reasoning behind it. In particular, we realized visitors wanted to understand the criteria the detection algorithm uses, and how much they could trust the current detection result.'
+              )}
+            </p>
+          </div>
+
+          <div className="detail-block">
+            <h2 className="section-heading">
               {t('결과 및 한계', 'Results & Limitations')}
             </h2>
-            
+
             <div className="results-grid">
               <div className="result-card">
                 <div className="result-head success">{t('성과', 'Achievements')}</div>

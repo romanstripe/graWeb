@@ -20,7 +20,7 @@ const STATUS_CAPTIONS = [
 
 /**
  * DemoSection 컴포넌트
- * 프로젝트 시연 영상을 표시하는 섹션
+ * 프로젝트 설명 영상을 표시하는 섹션
  * forwardRef를 사용하여 부모에서 스크롤 이동 가능
  */
 const DemoSection = forwardRef((props, ref) => {
@@ -30,7 +30,7 @@ const DemoSection = forwardRef((props, ref) => {
     <section className="demo-section" ref={ref}>
       <div className="wrap">
         {/* 섹션 타이틀 */}
-        <h2 className="demo-title">{t('시연 영상', 'Demo Video')}</h2>
+        <h2 className="demo-title">{t('프로젝트 설명 영상', 'Project Video')}</h2>
 
         {/* YouTube 영상 임베드 */}
         <div className="video-wrap">

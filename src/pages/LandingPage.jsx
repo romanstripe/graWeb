@@ -8,7 +8,7 @@
  */
 
 import React, { useRef, useCallback } from 'react';
-import { Hero, SummaryCards, DemoSection, NavButtons } from '../components/Landing';
+import { Hero, SummaryCards, DemoSection, NavButtons, ExhibitionFaq } from '../components/Landing';
 import '../styles/landing.css';
 
 /**
@@ -58,6 +58,12 @@ function LandingPage() {
       
       {/* 상세 페이지 네비게이션 버튼 4개 */}
       <NavButtons />
+
+      {/* 구분선 */}
+      <hr className="rule" />
+
+      {/* 전시회 질문 - 목적과 활용 */}
+      <ExhibitionFaq />
     </main>
   );
 }

@@ -40,7 +40,7 @@ function Header() {
             {/* 홈이 아닌 경우 홈으로 돌아가기 링크 표시 */}
             {!isHome && (
               <li>
-                <Link to="/">← {t('홈으로', 'Home')}</Link>
+                <Link to="/">{t('홈으로', 'Home')}</Link>
               </li>
             )}
             

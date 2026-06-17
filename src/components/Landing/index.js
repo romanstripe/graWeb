@@ -8,3 +8,4 @@ export { default as Hero } from './Hero';
 export { default as SummaryCards } from './SummaryCards';
 export { default as DemoSection } from './DemoSection';
 export { default as NavButtons } from './NavButtons';
+export { default as ExhibitionFaq } from './ExhibitionFaq';

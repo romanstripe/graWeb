@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { useLanguage } from '../hooks';
+import demoVideo from '../images/wilson-demo.mp4';
 import '../styles/detail.css';
 
 /**
@@ -100,10 +101,37 @@ function TechniquePage() {
             ))}
           </div>
 
-          <div style={{ marginTop: '60px' }}>
-            <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '20px' }}>
+          <div className="detail-block">
+            <h3 className="sub-heading">
+              {t('데이터 로그 및 상태', 'Data Log & Status')}
+            </h3>
+            <div className="video-wrap">
+             <video
+              src={demoVideo}
+              title="Wilson Demo"
+              controls
+              autoPlay
+              muted
+              loop
+              playsInlinepreload="metadata"
+              >
+              브라우저가 비디오 재생을 지원하지 않습니다.
+              </video>
+            </div>
+          </div>
+
+          <div className="detail-block">
+            <h3 className="sub-heading">
               {t('상태 판정 기준', 'State Classification Criteria')}
             </h3>
+            <p className="detail-text">
+              {t(
+                'REL 임계값은 실험을 통해 도출한 경험적인 값입니다. 임계값을 높이면 민감도가 낮아져 실제 위험 상황에서도 ALERT 인식이 늦어질 수 있고, 임계값을 낮추면 작은 움직임에도 ALERT가 발생할 수 있습니다. DETECTED는 이 두 상태 사이의 완충 구간으로, 사람이 근처에 있지만 위협적인 움직임은 아닌 상황을 나타냅니다.',
+                'The REL threshold values are derived empirically through testing. Raising the threshold lowers sensitivity, which can delay ALERT recognition even in real danger; lowering it can trigger ALERT from even small movements. DETECTED acts as a buffer between the two states, representing a person nearby who is not exhibiting threatening movement.'
+              )}
+            </p>
+
+
             <table className="state-table">
               <thead>
                 <tr>
@@ -120,6 +148,37 @@ function TechniquePage() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          <div className="detail-block">
+            <h3 className="sub-heading">
+              {t('전시회 이후 추가 검증', 'Post-Exhibition Validation')}
+            </h3>
+            <p className="detail-text">
+              {t(
+                '전시회 이후 추가 실험을 통해 임계값(1.6, 2.0)과 비대칭 EMA 파라미터를 다시 검증했고, 기존 설정이 가장 안정적이라는 결과를 확인했습니다. 워밍업 프레임 수와 하위 백분위수 기준도 조정해보았지만 큰 차이가 없었으며, 이는 값들이 경험적으로 도출되었다는 점에서 본 프로젝트의 한계로 남아있습니다.',
+                'Following the exhibition, we re-validated the threshold values (1.6, 2.0) and the asymmetric EMA parameters through additional experiments, confirming the original settings remain the most stable. We also tried adjusting the warmup frame count and percentile cutoff, but found no significant improvement — a reminder that these values are empirically derived, which we consider a limitation of this project.'
+              )}
+            </p>
+          </div>
+
+          <div className="detail-block">
+            <h3 className="sub-heading">
+              {t('전시회 질문', 'Exhibition Q&A')}
+            </h3>
+            <div className="faq-list">
+              <div className="faq-item">
+                <p className="faq-q">
+                  {t('relative 값, 현재 스코어와 배경 스코어는 어떻게 정해지나요?', 'How are the relative value, current score, and background score determined?')}
+                </p>
+                <p className="faq-a">
+                  {t(
+                    '경험적으로 도출된 값입니다. 상대값(REL)이 커지면 민감도가 낮아져 ALERT 인식이 늦어질 수 있고, 작아지면 작은 움직임에도 ALERT가 발생할 수 있습니다. 이를 보완하기 위해 SAFE와 ALERT 사이에 DETECTED라는 완충 상태를 두었습니다.',
+                    'These are empirically derived values. As the relative value (REL) increases, sensitivity decreases and ALERT recognition can be delayed; as it decreases, even small movements can trigger ALERT. To compensate, we added DETECTED as a buffer state between SAFE and ALERT.'
+                  )}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

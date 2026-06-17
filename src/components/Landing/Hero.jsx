@@ -11,12 +11,31 @@ import React from 'react';
 import { useLanguage } from '../../hooks';
 
 /**
+ * 팀원 데이터
+ * 각 팀원의 이름과 담당 역할 정의 (한글/영어)
+ */
+const TEAM_MEMBERS = [
+  {
+    name: '김채영',
+    role: { ko: '프론트엔드 개발 및 발표 콘텐츠 제작', en: 'Frontend Development & Presentation' }
+  },
+  {
+    name: '박서연',
+    role: { ko: 'ESP32 펌웨어 개발 및 CSI 데이터 수집', en: 'ESP32 Firmware & CSI Data Collection' }
+  },
+  {
+    name: '이소현',
+    role: { ko: '프로젝트 기획, 실험 설계 및 성능 검증', en: 'Project Planning, Experiment Design & Validation' }
+  }
+];
+
+/**
  * Hero 컴포넌트
  * 랜딩 페이지 최상단에 표시되는 메인 소개 영역
  * @param {function} onDemoClick - 데모 섹션으로 스크롤하는 함수
  */
 function Hero({ onDemoClick }) {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
 
   return (
     <section className="hero">
@@ -24,9 +43,7 @@ function Hero({ onDemoClick }) {
         {/* 메인 타이틀 */}
         <h1>
           {t('WiFi CSI 기반', 'WiFi CSI-Based')}<br />
-          <span className="accent">
-            {t('실내 재실 감지 시스템', 'Indoor Presence Detection')}
-          </span>
+          {t('실내 재실 감지 시스템', 'Indoor Presence Detection')}
         </h1>
 
         {/* 프로젝트 설명 */}
@@ -39,22 +56,26 @@ function Hero({ onDemoClick }) {
 
         {/* CTA 버튼들 */}
         <div className="hero-actions">
-          <button 
-            className="btn btn-dark" 
+          <button
+            className="btn btn-dark"
             onClick={onDemoClick}
           >
-            {t('데모 보기 ↓', 'Watch Demo ↓')}
+            {t('데모 보기', 'Watch Demo')}
           </button>
         </div>
 
-        {/* 팀 정보 */}
+        {/* 팀 정보 - 졸업 프로젝트 및 팀원별 담당 역할 */}
         <div className="hero-team">
-          <span className="hero-team-label">
-            {t('2026 졸업 프로젝트', '2026 Graduation Project')}
-          </span>
-          <span className="hero-team-names">
-            박서연 · 이소현 · 김채영
-          </span>
+          <div className="hero-team-members">
+            {TEAM_MEMBERS.map((member, index) => (
+              <div key={index} className="hero-team-member">
+                <span className="hero-team-member-name">{member.name}</span>
+                <span className="hero-team-member-role">
+                  {lang === 'ko' ? member.role.ko : member.role.en}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
