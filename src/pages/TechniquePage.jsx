@@ -8,6 +8,8 @@ import { useLanguage } from '../hooks';
 import demoVideo from '../images/wilson-demo.mp4';
 import '../styles/detail.css';
 
+const DATA_LOG_YOUTUBE_URL = 'https://youtu.be/jEYZ5RjVbVg';
+
 /**
  * 작동 원리 스텝 데이터 (한글/영어)
  */
@@ -114,6 +116,17 @@ function TechniquePage() {
           <div className="detail-block">
             <h3 className="sub-heading">
               {t('데이터 로그 및 상태', 'Data Log & Status')}
+              <a
+                href={DATA_LOG_YOUTUBE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube에서 데이터 로그 및 상태 영상 보기"
+                className="sub-heading-icon-link"
+              >
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+                  <path d="M23.5 7.2s-.23-1.64-.94-2.36c-.9-.95-1.9-.95-2.36-1.01C16.9 3.5 12 3.5 12 3.5h-.01s-4.9 0-8.19.33c-.46.06-1.46.06-2.36 1.01C.74 5.56.5 7.2.5 7.2S.26 9.13.26 11.06v1.8c0 1.93.24 3.86.24 3.86s.24 1.64.94 2.36c.9.95 2.09.92 2.62 1.02 1.9.18 8.06.33 8.06.33s4.9-.01 8.19-.34c.46-.06 1.46-.06 2.36-1.01.71-.72.94-2.36.94-2.36s.24-1.93.24-3.86v-1.8c0-1.93-.24-3.86-.24-3.86ZM9.55 14.96V8.65l6.27 3.16-6.27 3.15Z" />
+                </svg>
+              </a>
             </h3>
             <div className="video-wrap">
              <video
@@ -123,7 +136,8 @@ function TechniquePage() {
               autoPlay
               muted
               loop
-              playsInlinepreload="metadata"
+              playsInline
+              preload="metadata"
               >
               브라우저가 비디오 재생을 지원하지 않습니다.
               </video>

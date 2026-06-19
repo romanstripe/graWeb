@@ -286,10 +286,29 @@
 }
 
 .sub-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.01em;
   margin-bottom: 18px;
+}
+
+.sub-heading-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--text2);
+  transition: color 0.15s, background 0.15s;
+}
+
+.sub-heading-icon-link:hover {
+  color: var(--text);
+  background: var(--surface);
 }
 
 .detail-text {
